@@ -17,7 +17,7 @@ public enum Vat {
 
   private final BigDecimal rate;
 
-  Vat(int rate){
+  Vat(int rate) {
     this.rate = BigDecimal.valueOf(rate);
   }
 
