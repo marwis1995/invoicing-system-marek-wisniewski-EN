@@ -16,6 +16,7 @@ plugins {
     id 'checkstyle'
 
     id 'jacoco'
+
 }
 
 repositories {
@@ -24,6 +25,8 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.projectlombok:lombok:1.18.22'
+
     // Use the latest Groovy version for Spock testing
     testImplementation 'org.codehaus.groovy:groovy:3.0.13'
 
@@ -34,7 +37,7 @@ dependencies {
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:31.1-jre'
 
-    implementation 'org.projectlombok:lombok:1.18.22'
+    //Lombok
     annotationProcessor("org.projectlombok:lombok:1.18.22")
     testAnnotationProcessor("org.projectlombok:lombok:1.18.22")
     compileOnly("org.projectlombok:lombok:1.18.22")
@@ -43,7 +46,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'pl.futurecollars.invocing.App'
+    mainClass = 'pl.futurecollars.invoicing.App'
 }
 
 tasks.named('test') {
@@ -74,25 +77,25 @@ jacoco {
     reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
 }
 
-jacocoTestReport{
-    reports{
+jacocoTestReport {
+    reports {
         xml.required = false
         csv.required = false
-        html.outputLocation = layout.buildDirectory.dir("jacocoHtml")
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
     }
 }
 
-jacocoTestCoverageVerification{
+jacocoTestCoverageVerification {
     violationRules {
-        rule{
+        rule {
             limit {
                 counter = 'BRANCH'
                 minimum = 0.70
             }
         }
 
-        rule{
-            limit{
+        rule {
+            limit {
                 counter = 'LINE'
                 minimum = 0.70
             }
