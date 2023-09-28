@@ -71,7 +71,9 @@ checkstyle {
     maxErrors = 0
 }
 
-
+bootJar {
+    enabled = false
+}
 
 test {
     finalizedBy jacocoTestReport // report is always generated after tests run
