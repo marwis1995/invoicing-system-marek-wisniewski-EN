@@ -30,7 +30,6 @@ public class InvoiceController {
     return invoiceService.getAll();
   }
 
-
   @PostMapping
   public int add(@RequestBody Invoice invoice) {
     return invoiceService.save(invoice);
