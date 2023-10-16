@@ -12,6 +12,8 @@ buildscript {
         spockVersion = '2.3-groovy-3.0'
         springBootVersion = '2.4.2'
         springDependencyManagementVersion = '1.0.11.RELEASE'
+        springFoxStarterVersion = '3.0.0'
+        springFoxUiVersion = '3.0.0'
     }
 }
 
@@ -29,6 +31,8 @@ plugins {
 
     id 'org.springframework.boot' version "${springBootVersion}"
     id 'io.spring.dependency-management' version "${springDependencyManagementVersion}"
+
+    id 'java'
 }
 
 repositories {
@@ -36,8 +40,10 @@ repositories {
     mavenCentral()
 }
 
-java{
+java {
     toolchain {
+        languageVersion = JavaLanguageVersion.of(14)
+        vendor = JvmVendorSpec.ADOPTOPENJDK
     }
 }
 
@@ -71,6 +77,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+    implementation "io.springfox:springfox-boot-starter:${springFoxStarterVersion}"
+    implementation "io.springfox:springfox-swagger-ui:${springFoxUiVersion}"
 
 }
 
