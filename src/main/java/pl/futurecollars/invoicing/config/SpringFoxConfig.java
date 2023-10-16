@@ -15,7 +15,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 public class SpringFoxConfig {
 
   @Bean
-  public Docket docket(){
+  public Docket docket() {
     return new Docket(DocumentationType.SWAGGER_2)
         .select()
         .apis(RequestHandlerSelectors.basePackage("pl.futurecollars"))
@@ -27,7 +27,7 @@ public class SpringFoxConfig {
         .apiInfo(apiInfo());
   }
 
-  private ApiInfo apiInfo(){
+  private ApiInfo apiInfo() {
     return new ApiInfoBuilder()
         .description("Application to manage set of invoices")
         .license("No license available - private!")
