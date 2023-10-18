@@ -1,6 +1,11 @@
 package pl.futurecollars.invoicing.utils;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
@@ -23,6 +28,10 @@ public class FilesService {
   }
 
   public List<String> readAllLines(Path path) throws IOException {
+    InputStream inputStream = new FileInputStream("xyz.json");
+//    Reader reader = new InputStreamReader(inputStream); //Adapter
+    BufferedInputStream bis = new BufferedInputStream(inputStream); //Decorator
+
     return Files.readAllLines(path);
   }
 
