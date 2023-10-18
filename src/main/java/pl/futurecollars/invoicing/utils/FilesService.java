@@ -26,10 +26,6 @@ public class FilesService {
   }
 
   public List<String> readAllLines(Path path) throws IOException {
-    InputStream inputStream = new FileInputStream("xyz.json");
-//    Reader reader = new InputStreamReader(inputStream); //Adapter
-    BufferedInputStream bis = new BufferedInputStream(inputStream); //Decorator
-
     return Files.readAllLines(path);
   }
 
