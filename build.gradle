@@ -33,7 +33,6 @@ plugins {
     id 'io.spring.dependency-management' version "${springDependencyManagementVersion}"
 
     id 'java'
-
 }
 
 group = 'pl.futurecollars'
