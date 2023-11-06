@@ -55,6 +55,4 @@ public class DatabaseConfiguration {
   public Database sqlDatabase(JdbcTemplate jdbcTemplate) {
     return new SqlDatabase(jdbcTemplate);
   }
-
-
 }
