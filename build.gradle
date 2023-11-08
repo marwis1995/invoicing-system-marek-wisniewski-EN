@@ -46,7 +46,7 @@ repositories {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(14)
+        languageVersion = JavaLanguageVersion.of(15)
         vendor = JvmVendorSpec.ADOPTOPENJDK
     }
 }
@@ -88,6 +88,8 @@ dependencies {
     runtimeOnly 'org.postgresql:postgresql:42.2.19'
     runtimeOnly 'com.h2database:h2:1.4.200'
     implementation "org.flywaydb:flyway-core:7.6.0"
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 }
 
 tasks.named('test') {
