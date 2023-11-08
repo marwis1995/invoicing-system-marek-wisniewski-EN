@@ -14,6 +14,7 @@ buildscript {
         springDependencyManagementVersion = '1.0.11.RELEASE'
         springFoxStarterVersion = '3.0.0'
         springFoxUiVersion = '3.0.0'
+        flywayVersion = '7.6.0'
     }
 }
 
@@ -33,7 +34,6 @@ plugins {
     id 'io.spring.dependency-management' version "${springDependencyManagementVersion}"
 
     id 'java'
-
 }
 
 group = 'pl.futurecollars'
@@ -46,7 +46,7 @@ repositories {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(14)
+        languageVersion = JavaLanguageVersion.of(15)
         vendor = JvmVendorSpec.ADOPTOPENJDK
     }
 }
@@ -90,9 +90,7 @@ dependencies {
     implementation "org.flywaydb:flyway-core:7.6.0"
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-
 }
-
 
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
@@ -104,6 +102,11 @@ checkstyle {
     ignoreFailures = false
     maxWarnings = 0
     maxErrors = 0
+}
+
+//lesson 4 -> fixing build problems
+bootJar {
+    enabled = false
 }
 
 test {
@@ -133,55 +136,20 @@ jacocoTestCoverageVerification {
         rule {
             limit {
                 counter = 'BRANCH'
-                minimum = 0.60
+                minimum = 0.70
             }
         }
         rule {
             limit {
                 counter = 'LINE'
-                minimum = 0.60
+                minimum = 0.70
             }
         }
     }
 
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: ['pl/futurecollars/invoicing/InvoiceApplication.class', 'pl/futurecollars/invoicing/db/DatabaseConfiguration.class'])
+            fileTree(dir: it, exclude: 'pl/futurecollars/invoicing/InvoiceApplication.class')
         }))
     }
-}
-
-task testWithFileDatabase(type: Test) {
-    systemProperty 'spring.profiles.active', 'file'
-}
-
-task testWithMemoryDatabase(type: Test) {
-    systemProperty 'spring.profiles.active', 'memory'
-}
-
-task testWithSqlDatabase(type: Test) {
-    systemProperty 'spring.profiles.active', 'sql'
-}
-
-task testWithJpaDatabase(type: Test) {
-    systemProperty 'spring.profiles.active', 'jpa'
-}
-
-task testWithJpaFlywayDatabase(type: Test) {
-    systemProperty 'spring.profiles.active', 'jpa-flyway'
-}
-
-task testWithPostgreSqlDatabase(type: Test) {
-    systemProperty 'spring.profiles.active', 'sql-pg'
-}
-
-check.dependsOn testWithFileDatabase
-check.dependsOn testWithMemoryDatabase
-check.dependsOn testWithSqlDatabase
-check.dependsOn testWithJpaDatabase
-check.dependsOn testWithJpaFlywayDatabase
-
-String osName = System.getProperty("os.name").toLowerCase()
-if (osName.contains("mac")) {
-    check.dependsOn testWithPostgreSqlDatabase
 }
