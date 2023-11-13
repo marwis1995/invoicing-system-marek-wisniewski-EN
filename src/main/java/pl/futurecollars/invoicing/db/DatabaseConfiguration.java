@@ -115,6 +115,4 @@ public class DatabaseConfiguration {
     return new MongoBasedDatabase(collection, mongoIdProvider);
   }
 
-
-
 }
