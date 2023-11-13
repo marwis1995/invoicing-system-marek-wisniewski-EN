@@ -15,6 +15,7 @@ buildscript {
         springFoxStarterVersion = '3.0.0'
         springFoxUiVersion = '3.0.0'
         flywayVersion = '7.6.0'
+        mongoVersion = '3.12.8'
     }
 }
 
@@ -90,6 +91,8 @@ dependencies {
     implementation "org.flywaydb:flyway-core:7.6.0"
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    implementation "org.mongodb:mongo-java-driver:${mongoVersion}"
 }
 
 tasks.named('test') {
