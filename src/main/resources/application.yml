@@ -16,3 +16,12 @@ spring:
     active: memory
   flyway:
     enabled: false
+  security:
+    user:
+      name: marek
+      password: xyz
+
+invoicing-system:
+  allowedOrigins: http://localhost:4200
+  csrf:
+    disable: true
